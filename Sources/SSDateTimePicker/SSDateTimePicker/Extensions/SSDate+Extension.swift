@@ -14,32 +14,32 @@ extension Date {
     
     /// Abbreviated month representation of the date (e.g., "Dec").
     public var abbreviatedMonth: String {
-        DateFormatter.configure(with: DateFormat.abbreviatedMonth).string(from: self)
+        DateFormatter.configure(with: SSDateFormat.abbreviatedMonth).string(from: self)
     }
     
     /// Full date with day of the week, month, and day representation (e.g., "Friday December 3").
     public var dayOfWeekWithMonthAndDay: String {
-        DateFormatter.configure(with: DateFormat.dayOfWeekWithMonthAndDay).string(from: self)
+        DateFormatter.configure(with: SSDateFormat.dayOfWeekWithMonthAndDay).string(from: self)
     }
     
     /// Full month representation of the date (e.g., "December").
     public var fullMonth: String {
-        DateFormatter.configure(with: DateFormat.fullMonth).string(from: self)
+        DateFormatter.configure(with: SSDateFormat.fullMonth).string(from: self)
     }
     
     /// Time-only representation with padding (e.g., "12:45 PM").
     public var timeOnlyWithPadding: String {
-        DateFormatter.configure(with: DateFormat.timeOnlyWithPadding).string(from: self)
+        DateFormatter.configure(with: SSDateFormat.timeOnlyWithPadding).string(from: self)
     }
     
     /// Month, day, and year representation (e.g., "Jun 3, 2023").
     public var monthDateYear: String {
-        DateFormatter.configure(with: DateFormat.monthDateYear).string(from: self)
+        DateFormatter.configure(with: SSDateFormat.monthDateYear).string(from: self)
     }
     
     /// Month and year representation (e.g., "December, 2023").
     public var monthYear: String {
-        DateFormatter.configure(with: DateFormat.monthYear).string(from: self)
+        DateFormatter.configure(with: SSDateFormat.monthYear).string(from: self)
     }
     
     // MARK: - Custom Formatted Date

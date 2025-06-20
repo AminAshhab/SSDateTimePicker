@@ -74,7 +74,7 @@ final class SSTimePickerManager: ObservableObject {
     func updateSelectedTime() {
         _ = updateWithDefaultMinuteIfEmpty()
         _ = updateWithDefaultHourIfEmpty()
-        let format = DateFormatter.configure(with: DateFormat.twentyFourHourFormat)
+        let format = DateFormatter.configure(with: SSDateFormat.twentyFourHourFormat)
         // get hours for 24-hrs format
         let hour = (Int(hourSelected) ?? 12)
         let updatedHour = selectedTimeFromat == .am ? (hour == 12 ? 00.formattedTime : hour.formattedTime) : "\(hour < 12 ? (hour + 12).formattedTime : hour.formattedTime)"

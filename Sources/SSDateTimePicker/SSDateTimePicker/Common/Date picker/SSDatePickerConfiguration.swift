@@ -84,7 +84,7 @@ struct SSDatePickerConfiguration {
     var pickerViewRadius: CGFloat = 15
     
     /// Date format for the header.
-    var headerDateFormat: String = DateFormat.monthDateYear
+    var headerDateFormat: String = SSDateFormat.monthDateYear
     
     // MARK: - Initializer
     

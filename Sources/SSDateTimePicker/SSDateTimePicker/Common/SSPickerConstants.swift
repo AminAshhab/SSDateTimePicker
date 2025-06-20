@@ -64,48 +64,48 @@ struct Size {
 // MARK: - DateFormat
 
 /// A struct containing commonly used date format strings for formatting and parsing dates.
-public struct DateFormat {
+public struct SSDateFormat {
     
     /// Abbreviated month format (e.g., "Dec").
-    public static let abbreviatedMonth = "MMM"
-    
+    public static var abbreviatedMonth = "MMM"
+
     /// Day of the week with month and day format (e.g., "Friday December 3").
-    public static let dayOfWeekWithMonthAndDay = "EEEE MMMM d"
-    
+    public static var dayOfWeekWithMonthAndDay = "EEEE MMMM d"
+
     /// Full month format (e.g., "December").
-    public static let fullMonth = "MMMM"
-    
+    public static var fullMonth = "MMMM"
+
     /// Month and year format (e.g., "December, 2023").
-    public static let monthYear = "MMMM, yyyy"
-    
+    public static var monthYear = "MMMM, yyyy"
+
     /// Month, day, and year format (e.g., "Jun 3, 2023").
-    public static let monthDateYear = "MMM d, yyyy"
-    
+    public static var monthDateYear = "MMM d, yyyy"
+
     /// Day, month, and year format (e.g., "3 Jun, 2023").
-    public static let dateMonthYear = "d MMM, yyyy"
-    
+    public static var dateMonthYear = "d MMM, yyyy"
+
     /// Full date with day, month, and year format (e.g., "03 December, 2023").
-    public static let dateMonthYearFull = "dd MMMM, yyyy"
-    
+    public static var dateMonthYearFull = "dd MMMM, yyyy"
+
     /// Month, day, and year full format (e.g., "December 03, 2023").
-    public static let monthDateYearFull = "MMMM dd, yyyy"
-    
+    public static var monthDateYearFull = "MMMM dd, yyyy"
+
     /// Year, month, and day format (e.g., "2023-06-03").
-    public static let yearMonthDate = "yyyy-MM-dd"
-    
+    public static var yearMonthDate = "yyyy-MM-dd"
+
     /// Short month and year format (e.g., "Jun 2023").
-    public static let shortMonthYear = "MMM yyyy"
-    
+    public static var shortMonthYear = "MMM yyyy"
+
     /// Day of the week, day, month, and year format (e.g., "Monday, 3 Jun, 2023").
-    public static let dayMonthYear = "EEEE, d MMM, yyyy"
-    
+    public static var dayMonthYear = "EEEE, d MMM, yyyy"
+
     /// Full date format (e.g., "Monday, Jun 03, 2023").
-    public static let fullDate = "EEEE, MMMM d, yyyy"
-    
+    public static var fullDate = "EEEE, MMMM d, yyyy"
+
     /// Time-only format with padding (e.g., "12:45 PM").
-    public static let timeOnlyWithPadding = "hh:mm a"
-    
+    public static var timeOnlyWithPadding = "hh:mm a"
+
     /// Twenty-four-hour time format (e.g., "12:45").
-    public static let twentyFourHourFormat = "HH:mm"
-    
+    public static var twentyFourHourFormat = "HH:mm"
+
 }
