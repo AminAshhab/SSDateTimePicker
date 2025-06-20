@@ -68,14 +68,14 @@ struct SSDateView: View, DatePickerConfigurationDirectAccess {
         } else if isSelected || isStartDate || isEndDate {
             return selectionBackgroundColor
         } else if isDayWithinSelectedDateRange {
-            return selectionBackgroundColor.opacity(0.3)
+            return selectionBackgroundColor.opacity(0.6)
         } else {
             return Color.clear
         }
     }
     
     private var opacity: Double {
-        return isDaySelectableAndInRange ? 1 : 0.15
+        return isDaySelectableAndInRange ? 1 : 0.25
     }
     
     private var isSelectedDateSame: Bool {
