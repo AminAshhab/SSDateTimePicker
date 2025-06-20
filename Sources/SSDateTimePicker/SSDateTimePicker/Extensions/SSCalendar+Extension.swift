@@ -87,5 +87,25 @@ extension Calendar {
             isEqual = isEqual && isDate(date1, equalTo: date2, toGranularity: component)
         }
     }
-    
+
+    /// Returns the localized short weekday symbols ordered according to the calendar's first weekday.
+    ///
+    /// This method uses the calendar's locale and first weekday settings to produce
+    /// an array of abbreviated weekday names (e.g., "Mon", "Tue", ...) starting with
+    /// the day defined by `calendar.firstWeekday`.
+    ///
+    /// - Returns: An array of short weekday symbols ordered to start with the calendar's first weekday.
+    ///
+    func weekdaySymbols() -> [String] {
+        let formatter = DateFormatter()
+
+        formatter.locale = self.locale
+        formatter.calendar = self
+
+        let symbols = formatter.shortWeekdaySymbols ?? []
+        let startIndex = self.firstWeekday - 1
+        let reordered = Array(symbols[startIndex...]) + Array(symbols[..<startIndex])
+
+        return reordered
+    }
 }

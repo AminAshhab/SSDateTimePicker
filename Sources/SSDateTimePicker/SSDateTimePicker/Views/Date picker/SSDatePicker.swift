@@ -66,7 +66,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
             case .date:
                 dateSectionView
             case .month:
-                SSMonthSelectionView()
+                SSMonthSelectionView(currentView: $currentView)
             case .year:
                 SSYearSelectionView(currentView: $currentView)
             }
@@ -76,8 +76,8 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     private var calenderContainerView: some View {
         VStack(alignment: .leading, spacing: SSPickerConstants.verticleSpacingTen) {
             datePickerHeader
+            calendarMonthSelectionView
             pickerContainerView
-            calenderFooterView
             bottomButtons
         }
         .padding(SSPickerConstants.pickerViewInnerPadding)
@@ -113,7 +113,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
     
     private var daysOfWeekView: some View {
         HStack(spacing: SSPickerConstants.horizontalSpacingDates) {
-            ForEach(calendar.shortWeekdaySymbols, id: \.self) { dayOfWeek in
+            ForEach(calendar.weekdaySymbols(), id: \.self) { dayOfWeek in
                 Text(dayOfWeek.prefix(1))
                     .font(weekdayTextFont)
                     .frame(width: SSPickerConstants.widthForDaysOfWeek)
@@ -130,7 +130,7 @@ public struct SSDatePicker: View, DatePickerConfigurationDirectAccess {
         }
     }
     
-    private var calenderFooterView: some View {
+    private var calendarMonthSelectionView: some View {
         HStack {
             btnPrevious
             Spacer()
