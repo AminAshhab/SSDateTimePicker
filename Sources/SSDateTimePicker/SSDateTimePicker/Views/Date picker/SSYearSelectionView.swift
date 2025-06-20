@@ -11,8 +11,8 @@ public struct SSYearSelectionView: View, DatePickerConfigurationDirectAccess {
     
     // MARK: - Properties
 
-    @Binding var currentView: SelectionView
-    @EnvironmentObject var calendarManager: SSDatePickerManager
+    @Binding private var currentView: SelectionView
+    @EnvironmentObject private var calendarManager: SSDatePickerManager
     private var gridItem: [GridItem] = Array(repeating: .init(.flexible()), count: SSPickerConstants.monthYearGridRows)
     
     var configuration: SSDatePickerConfiguration {
@@ -21,7 +21,7 @@ public struct SSYearSelectionView: View, DatePickerConfigurationDirectAccess {
     
     //MARK: - Initializer
 
-    public init(currentView: Binding<SelectionView>) {
+    init(currentView: Binding<SelectionView>) {
         self._currentView = currentView
     }
 

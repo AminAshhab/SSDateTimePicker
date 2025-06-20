@@ -11,14 +11,19 @@ struct SSMonthSelectionView: View, DatePickerConfigurationDirectAccess {
     
     // MARK: - Properties
 
-    @EnvironmentObject var calendarManager: SSDatePickerManager
-    @State var monthList: [String] = DateFormatter.monthsList
+    @EnvironmentObject private var calendarManager: SSDatePickerManager
+    @Binding var currentView: SelectionView
+    @State private var monthList: [String] = DateFormatter.monthsList
     private var gridItem: [GridItem] = Array(repeating: .init(.flexible()), count: SSPickerConstants.monthYearGridRows)
     
-    var configuration: SSDatePickerConfiguration {
+    internal var configuration: SSDatePickerConfiguration {
         calendarManager.configuration
     }
-    
+
+    init(currentView: Binding<SelectionView>) {
+        _currentView = currentView
+    }
+
     //MARK: - Body
 
     var body: some View {
@@ -44,7 +49,10 @@ struct SSMonthSelectionView: View, DatePickerConfigurationDirectAccess {
         let monthName = month
         let isSelectedMonth = calendarManager.isSelected(monthName)
         Button {
-            updateMonth(month: month)
+            withAnimation {
+                updateMonth(month: month)
+                currentView = .date
+            }
         } label: {
             Text(monthName)
                 .font(isSelectedMonth ? selectedMonthTextFont : monthTextFont)
