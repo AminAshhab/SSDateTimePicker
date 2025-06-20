@@ -20,7 +20,7 @@ extension DateFormatter {
     /// ```
     static var monthsList: [String] {
         let formatter = DateFormatter()
-        let months = formatter.monthSymbols
+        let months = formatter.standaloneMonthSymbols
         return months ?? []
     }
     
