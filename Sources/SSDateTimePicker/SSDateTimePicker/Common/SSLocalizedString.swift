@@ -9,14 +9,14 @@ import Foundation
 
 public final class SSLocalizedString {
 
-    static var ok = "Ok".localized()
-    static var cancel = "Cancel".localized()
-    static var selectDate = "Select Date".localized()
-    static var selectTime = "Select Time".localized()
-    static var am = "AM".localized()
-    static var pm = "PM".localized()
-    static var hour = "HH".localized()
-    static var minute = "MM".localized()
-    static var done = "Done".localized()
+    public static var ok = "Ok".localized()
+    public static var cancel = "Cancel".localized()
+    public static var selectDate = "Select Date".localized()
+    public static var selectTime = "Select Time".localized()
+    public static var am = "AM".localized()
+    public static var pm = "PM".localized()
+    public static var hour = "HH".localized()
+    public static var minute = "MM".localized()
+    public static var done = "Done".localized()
 
 }
