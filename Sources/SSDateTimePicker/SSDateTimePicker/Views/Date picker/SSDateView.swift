@@ -28,8 +28,7 @@ struct SSDateView: View, DatePickerConfigurationDirectAccess {
     }
     
     private var isDayWithinDateRange: Bool {
-        guard let minimumDate, let maximumDate else { return true }
-        return date >= calendar.startOfDay(for: minimumDate) && date <= maximumDate
+        calendarManager.isDateInRange(date)
     }
     
     private var isDayWithinWeekMonthAndYear: Bool {

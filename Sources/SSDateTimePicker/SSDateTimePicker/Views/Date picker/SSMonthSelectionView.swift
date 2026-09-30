@@ -48,6 +48,7 @@ struct SSMonthSelectionView: View, DatePickerConfigurationDirectAccess {
     private func btnMonth(for month: String) -> some View {
         let monthName = month
         let isSelectedMonth = calendarManager.isSelected(monthName)
+        let isMonthInRange = monthList.firstIndex(of: month).map { calendarManager.isMonthInRange($0 + 1) } ?? true
         Button {
             withAnimation {
                 updateMonth(month: month)
@@ -58,6 +59,8 @@ struct SSMonthSelectionView: View, DatePickerConfigurationDirectAccess {
                 .font(isSelectedMonth ? selectedMonthTextFont : monthTextFont)
                 .foregroundColor(isSelectedMonth ? selectionBackgroundColor : dateMonthYearTextColor)
         }
+        .disabled(!isMonthInRange)
+        .opacity(isMonthInRange ? 1 : 0.25)
     }
     
     //MARK: - Methods
