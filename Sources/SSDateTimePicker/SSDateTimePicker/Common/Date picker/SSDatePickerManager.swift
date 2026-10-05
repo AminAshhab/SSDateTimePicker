@@ -152,30 +152,36 @@ final class SSDatePickerManager: ObservableObject, DatePickerConfigurationDirect
     
     /// Updates the month selection based on the chosen month.
     func updateMonthSelection(month: Int) {
-        guard let selectedDate else {
-            var component = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self.currentMonth)
-            component.month = month
-            self.currentMonth = calendar.date(from: component) ?? currentMonth
-            return
-        }
-        var component = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: selectedDate)
+        var component = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: selectedDate ?? currentMonth)
         component.month = month
-        self.selectedDate = calendar.date(from: component)
-        self.currentMonth = self.selectedDate ?? currentMonth
+        applySelection(component)
     }
     
     /// Updates the year selection based on the chosen year.
     func updateYearSelection(year: Int) {
-        guard let selectedDate else {
-            var component = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self.currentMonth)
-            component.year = year
-            self.currentMonth = calendar.date(from: component) ?? currentMonth
-            return
-        }
-        var component = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: selectedDate)
+        var component = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: selectedDate ?? currentMonth)
         component.year = year
-        self.selectedDate = calendar.date(from: component)
-        self.currentMonth = self.selectedDate ?? currentMonth
+        applySelection(component)
+    }
+    
+    func isMonthInRange(_ month: Int) -> Bool {
+        var component = calendar.dateComponents([.year], from: currentMonth)
+        component.month = month
+        component.day = 1
+        guard let date = calendar.date(from: component), let interval = calendar.dateInterval(of: .month, for: date) else { return true }
+        return isIntervalInRange(interval)
+    }
+    
+    func isYearInRange(_ year: Int) -> Bool {
+        guard let date = calendar.date(from: DateComponents(year: year, month: 1, day: 1)),
+              let interval = calendar.dateInterval(of: .year, for: date) else { return true }
+        return isIntervalInRange(interval)
+    }
+    
+    func isDateInRange(_ date: Date) -> Bool {
+        if let minimumDate, date < calendar.startOfDay(for: minimumDate) { return false }
+        if let maximumDate, date > maximumDate { return false }
+        return true
     }
     
     /// Updates the displayed year range in the year selection view.
@@ -236,6 +242,36 @@ final class SSDatePickerManager: ObservableObject, DatePickerConfigurationDirect
         return !disableDates.contains { disableDate in
             calendar.isDate(date, equalTo: disableDate, toGranularities: [.day, .month, .year])
         }
+    }
+    
+    private func applySelection(_ components: DateComponents) {
+        var component = components
+        let day = component.day ?? 1
+        component.day = 1
+        guard let firstDayOfMonth = calendar.date(from: component),
+              let daysInMonth = calendar.range(of: .day, in: .month, for: firstDayOfMonth) else { return }
+        component.day = min(day, daysInMonth.count)
+        guard let date = calendar.date(from: component) else { return }
+        
+        guard selectedDate != nil else {
+            currentMonth = date
+            return
+        }
+        let clampedDate = clampedToRange(date)
+        selectedDate = canSelectDate(clampedDate) ? clampedDate : nil
+        currentMonth = clampedDate
+    }
+    
+    private func clampedToRange(_ date: Date) -> Date {
+        if let minimumDate, date < calendar.startOfDay(for: minimumDate) { return minimumDate }
+        if let maximumDate, date > maximumDate { return maximumDate }
+        return date
+    }
+    
+    private func isIntervalInRange(_ interval: DateInterval) -> Bool {
+        if let minimumDate, interval.end <= calendar.startOfDay(for: minimumDate) { return false }
+        if let maximumDate, interval.start > maximumDate { return false }
+        return true
     }
     
 }

@@ -51,6 +51,7 @@ public struct SSYearSelectionView: View, DatePickerConfigurationDirectAccess {
     @ViewBuilder
     private func btnYear(for year: Int) -> some View {
         let isSelectedYear = calendarManager.isSelected(year)
+        let isYearInRange = calendarManager.isYearInRange(year)
         Button {
             updateYearSelection(year: year)
         } label: {
@@ -58,6 +59,8 @@ public struct SSYearSelectionView: View, DatePickerConfigurationDirectAccess {
                 .font(isSelectedYear ? selectedYearTextFont : yearTextFont)
                 .foregroundColor(isSelectedYear ? selectionBackgroundColor : dateMonthYearTextColor)
         }
+        .disabled(!isYearInRange)
+        .opacity(isYearInRange ? 1 : 0.25)
     }
     
     //MARK: - Methods
