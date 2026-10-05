@@ -50,8 +50,8 @@ public struct SSYearSelectionView: View, DatePickerConfigurationDirectAccess {
     
     @ViewBuilder
     private func btnYear(for year: Int) -> some View {
-        let isSelectedYear = calendarManager.isSelected(year)
         let isYearInRange = calendarManager.isYearInRange(year)
+        let isSelectedYear = isYearInRange && calendarManager.isSelected(year)
         Button {
             updateYearSelection(year: year)
         } label: {

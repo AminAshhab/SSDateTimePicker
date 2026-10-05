@@ -47,8 +47,8 @@ struct SSMonthSelectionView: View, DatePickerConfigurationDirectAccess {
     @ViewBuilder
     private func btnMonth(for month: String) -> some View {
         let monthName = month
-        let isSelectedMonth = calendarManager.isSelected(monthName)
         let isMonthInRange = monthList.firstIndex(of: month).map { calendarManager.isMonthInRange($0 + 1) } ?? true
+        let isSelectedMonth = isMonthInRange && calendarManager.isSelected(monthName)
         Button {
             withAnimation {
                 updateMonth(month: month)
