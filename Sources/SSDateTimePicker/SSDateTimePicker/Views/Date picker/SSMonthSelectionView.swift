@@ -57,7 +57,7 @@ struct SSMonthSelectionView: View, DatePickerConfigurationDirectAccess {
         } label: {
             Text(monthName)
                 .font(isSelectedMonth ? selectedMonthTextFont : monthTextFont)
-                .foregroundColor(isSelectedMonth ? selectionBackgroundColor : dateMonthYearTextColor)
+                .foregroundColor(isSelectedMonth ? buttonsForegroundColor : dateMonthYearTextColor)
         }
         .disabled(!isMonthInRange)
         .opacity(isMonthInRange ? 1 : 0.25)

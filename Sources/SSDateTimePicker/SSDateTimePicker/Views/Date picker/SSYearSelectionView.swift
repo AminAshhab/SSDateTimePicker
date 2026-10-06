@@ -57,7 +57,7 @@ public struct SSYearSelectionView: View, DatePickerConfigurationDirectAccess {
         } label: {
             Text(String(year))
                 .font(isSelectedYear ? selectedYearTextFont : yearTextFont)
-                .foregroundColor(isSelectedYear ? selectionBackgroundColor : dateMonthYearTextColor)
+                .foregroundColor(isSelectedYear ? buttonsForegroundColor : dateMonthYearTextColor)
         }
         .disabled(!isYearInRange)
         .opacity(isYearInRange ? 1 : 0.25)
